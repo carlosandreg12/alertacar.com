@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>AlertaCar - Painel de Controle</title>
+    <link rel="stylesheet" href="styles.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+</head>
+<body>
+    <div class="container">
+        <div class="dashboard-container">
+            <div class="logo-container">
+                <div class="car-alert-icon">
+                    <i class="fas fa-car"></i>
+                    <div class="alert-beacon">
+                        <i class="fas fa-exclamation-triangle"></i>
+                    </div>
+                </div>
+            </div>
+            <h1>Painel de Controle</h1>
+            <div class="alert-section">
+                <h2>Enviar Alerta</h2>
+                <form id="alertForm" onsubmit="return sendAlert(event)">
+                    <input type="text" id="carPlate" placeholder="Placa do veículo" required>
+                    <textarea id="alertMessage" placeholder="Mensagem personalizada (opcional)"></textarea>
+                    <button type="submit" class="alert-button">
+                        <i class="fas fa-bell"></i> Enviar Alerta
+                    </button>
+                </form>
+            </div>
+            <button onclick="logout()" class="logout-button">Sair do Sistema</button>
+        </div>
+    </div>
+    <audio id="alertSound" src="alert.mp3"></audio>
+    <script src="dashboard.js"></script>
+</body>
+</html>

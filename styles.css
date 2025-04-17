@@ -1,0 +1,272 @@
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    font-family: Arial, sans-serif;
+    background-color: #f0f2f5;
+    min-height: 100vh;
+}
+
+.container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    min-height: 100vh;
+    padding: 20px;
+}
+
+/* Add these new styles at the beginning of your CSS file */
+.logo-container {
+    text-align: center;
+    margin-bottom: 20px;
+}
+
+.car-alert-icon {
+    position: relative;
+    display: inline-block;
+    font-size: 60px;
+    color: #1a73e8;
+    animation: carFloat 3s ease-in-out infinite;
+}
+
+.alert-beacon {
+    position: absolute;
+    top: -15px;
+    right: -15px;
+    font-size: 24px;
+    color: #ff4444;
+    animation: pulse 1s ease-in-out infinite;
+}
+
+@keyframes pulse {
+    0% {
+        transform: scale(1);
+        opacity: 1;
+    }
+    50% {
+        transform: scale(1.2);
+        opacity: 0.8;
+    }
+    100% {
+        transform: scale(1);
+        opacity: 1;
+    }
+}
+
+@keyframes carFloat {
+    0%, 100% {
+        transform: translateY(0);
+    }
+    50% {
+        transform: translateY(-10px);
+    }
+}
+
+/* Update the existing auth-container style */
+.auth-container {
+    background-color: white;
+    padding: 30px;
+    border-radius: 20px;
+    box-shadow: 0 4px 20px rgba(0, 0, 0, 0.1);
+    width: 100%;
+    max-width: 400px;
+}
+
+/* Update the existing h1 style */
+h1 {
+    text-align: center;
+    color: #1a73e8;
+    margin-bottom: 30px;
+    font-size: 2.5em;
+    font-weight: bold;
+}
+
+h2 {
+    margin-bottom: 20px;
+    color: #333;
+}
+
+.form-section {
+    margin-bottom: 20px;
+}
+
+input, select {
+    width: 100%;
+    padding: 12px;
+    margin-bottom: 15px;
+    border: 1px solid #ddd;
+    border-radius: 5px;
+    font-size: 16px;
+}
+
+button {
+    width: 100%;
+    padding: 12px;
+    background-color: #1a73e8;
+    color: white;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    font-size: 16px;
+    margin-top: 10px;
+}
+
+button:hover {
+    background-color: #1557b0;
+}
+
+.hidden {
+    display: none;
+}
+
+p {
+    text-align: center;
+    margin-top: 15px;
+}
+
+/* Add these to your existing styles */
+.form-section a {
+    color: #1a73e8;
+    text-decoration: none;
+    cursor: pointer;
+}
+
+.form-section a:hover {
+    text-decoration: underline;
+}
+
+.recovery-message {
+    color: #4CAF50;
+    margin-top: 10px;
+    text-align: center;
+}
+
+a:hover {
+    text-decoration: underline;
+}
+
+
+/* Add these styles to your existing CSS file */
+.reset-users-container {
+    height: 20px;
+    text-align: center;
+    margin-top: 15px;
+}
+
+.reset-users-link {
+    visibility: hidden;
+    color: #ff0000;
+    text-decoration: none;
+}
+
+.reset-users-container:hover .reset-users-link {
+    visibility: visible;
+}
+
+.reset-users-link, 
+.form-section .reset-users-link,
+.form-section a.reset-users-link {
+    color: #ff4444 !important;
+    opacity: 1;
+}
+
+.reset-users-container:hover .reset-users-link {
+    text-decoration: underline;
+}
+
+.dashboard-container {
+    background-color: white;
+    padding: 30px;
+    border-radius: 20px;
+    box-shadow: 0 4px 20px rgba(0, 0, 0, 0.1);
+    width: 100%;
+    max-width: 600px;
+}
+
+.alert-section {
+    margin: 20px 0;
+    padding: 20px;
+    border: 1px solid #ddd;
+    border-radius: 10px;
+}
+
+textarea {
+    width: 100%;
+    padding: 12px;
+    margin-bottom: 15px;
+    border: 1px solid #ddd;
+    border-radius: 5px;
+    font-size: 16px;
+    min-height: 100px;
+    resize: vertical;
+}
+
+.alert-button {
+    background-color: #ff4444;
+}
+
+.alert-button:hover {
+    background-color: #cc0000;
+}
+
+.logout-button {
+    background-color: #666;
+    margin-top: 20px;
+}
+
+.logout-button:hover {
+    background-color: #444;
+}
+
+/* Remove these classes if they're not used elsewhere */
+.password-container {
+    position: relative;
+    width: 100%;
+}
+
+.password-container input {
+    width: 100%;
+}
+
+.password-toggle {
+    position: absolute;
+    right: 10px;
+    top: 50%;
+    transform: translateY(-50%);
+    cursor: pointer;
+    color: #666;
+}
+
+.password-toggle:hover {
+    color: #333;
+}
+
+.control-panel {
+    background: white;
+    padding: 20px;
+    border-radius: 8px;
+    box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+    margin-top: 20px;
+}
+
+.alerts-list {
+    max-height: 400px;
+    overflow-y: auto;
+}
+
+.alert-item {
+    padding: 15px;
+    border-bottom: 1px solid #eee;
+    margin-bottom: 10px;
+}
+
+.alert-item:last-child {
+    border-bottom: none;
+}
+
+.hidden {
+    display: none;
+}

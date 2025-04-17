@@ -1,0 +1,122 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>AlertaCar - Sistema de Alerta para Veículos</title>
+    <link rel="stylesheet" href="styles.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link rel="icon" type="image/x-icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 512 512'><path fill='%23000000' d='M499.99 176h-59.87l-16.64-41.6C406.38 91.63 365.57 64 319.5 64h-127c-46.06 0-86.88 27.63-103.99 70.4L71.87 176H12.01C4.2 176-1.53 183.34.37 190.91l6 24C7.7 220.25 12.5 224 18.01 224h20.07C24.65 235.73 16 252.78 16 272v48c0 16.12 6.16 30.67 16 41.93V416c0 17.67 14.33 32 32 32h32c17.67 0 32-14.33 32-32v-32h256v32c0 17.67 14.33 32 32 32h32c17.67 0 32-14.33 32-32v-54.07c9.84-11.25 16-25.8 16-41.93v-48c0-19.22-8.65-36.27-22.07-48H494c5.51 0 10.31-3.75 11.64-9.09l6-24c1.89-7.57-3.84-14.91-11.65-14.91zm-352.06-17.83c7.29-18.22 24.94-30.17 44.57-30.17h127c19.63 0 37.28 11.95 44.57 30.17L384 208H128l19.93-49.83zM96 319.8c-19.2 0-32-12.76-32-31.9S76.8 256 96 256s48 28.71 48 47.85-28.8 15.95-48 15.95zm320 0c-19.2 0-48 3.19-48-15.95S396.8 256 416 256s32 12.76 32 31.9-12.8 31.9-32 31.9z'/></svg>">
+    
+    <!-- Add Firebase SDK -->
+    <script src="https://www.gstatic.com/firebasejs/9.x.x/firebase-app.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/9.x.x/firebase-auth.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/9.x.x/firebase-database.js"></script>
+</head>
+<body>
+    <div class="container">
+        <div class="auth-container">
+            <div class="logo-container">
+                <div class="car-alert-icon">
+                    <i class="fas fa-car"></i>
+                    <div class="alert-beacon">
+                        <i class="fas fa-exclamation-triangle"></i>
+                    </div>
+                </div>
+            </div>
+            <h1>AlertaCar</h1>
+            
+            <!-- Login Form -->
+            <!-- Add after the login form buttons -->
+            <div id="loginForm" class="form-section">
+                <h2>Login</h2>
+                <form onsubmit="return handleLogin(event)">
+                    <input type="email" id="loginEmail" placeholder="Email" required>
+                    <div class="password-container">
+                        <input type="password" id="loginPassword" placeholder="Senha" required>
+                        <i class="fas fa-eye password-toggle" onclick="togglePasswordVisibility('loginPassword', this)"></i>
+                    </div>
+                    <button type="submit">Entrar</button>
+                </form>
+                <p>Não tem uma conta? <a href="#" onclick="toggleForms()">Cadastre-se</a></p>
+                <p><a href="#" onclick="toggleRecoveryForm()">Esqueceu sua senha?</a></p>
+                <div class="reset-users-container">
+                    <a href="#" onclick="resetAllUsers()" class="reset-users-link">Resetar todos os usuários</a>
+                </div>
+            </div>
+
+            <!-- Add this new recovery form section -->
+            <div id="recoveryForm" class="form-section hidden">
+                <h2>Recuperar Senha</h2>
+                <form onsubmit="return handleRecovery(event)">
+                    <input type="email" id="recoveryEmail" placeholder="Email cadastrado" required>
+                    <button type="submit">Recuperar Senha</button>
+                </form>
+                <p><a href="#" onclick="toggleRecoveryForm()">Voltar ao Login</a></p>
+            </div>
+            <!-- Registration Form -->
+            <div id="registerForm" class="form-section hidden">
+                <h2>Cadastro</h2>
+                <form onsubmit="return handleRegister(event)">
+                    <input type="text" id="regName" placeholder="Nome completo" required>
+                    <input type="email" id="regEmail" placeholder="Email" required>
+                    <input type="password" id="regPassword" placeholder="Senha" required>
+                    <input type="tel" id="regPhone" placeholder="Telefone" required>
+                    
+                    <!-- Car Information -->
+                    <input type="text" id="regPlate" placeholder="Placa do veículo" required>
+                    <input type="text" id="regModel" placeholder="Modelo do veículo" required>
+                    <input type="text" id="regColor" placeholder="Cor do veículo" required>
+                    <select id="regState" required>
+                        <option value="">Selecione o Estado</option>
+                        <option value="AC">Acre</option>
+                        <option value="AL">Alagoas</option>
+                        <option value="AP">Amapá</option>
+                        <option value="AM">Amazonas</option>
+                        <option value="BA">Bahia</option>
+                        <option value="CE">Ceará</option>
+                        <option value="DF">Distrito Federal</option>
+                        <option value="ES">Espírito Santo</option>
+                        <option value="GO">Goiás</option>
+                        <option value="MA">Maranhão</option>
+                        <option value="MT">Mato Grosso</option>
+                        <option value="MS">Mato Grosso do Sul</option>
+                        <option value="MG">Minas Gerais</option>
+                        <option value="PA">Pará</option>
+                        <option value="PB">Paraíba</option>
+                        <option value="PR">Paraná</option>
+                        <option value="PE">Pernambuco</option>
+                        <option value="PI">Piauí</option>
+                        <option value="RJ">Rio de Janeiro</option>
+                        <option value="RN">Rio Grande do Norte</option>
+                        <option value="RS">Rio Grande do Sul</option>
+                        <option value="RO">Rondônia</option>
+                        <option value="RR">Roraima</option>
+                        <option value="SC">Santa Catarina</option>
+                        <option value="SP">São Paulo</option>
+                        <option value="SE">Sergipe</option>
+                        <option value="TO">Tocantins</option>
+                    </select>
+                    <button type="submit">Cadastrar</button>
+                </form>
+                <p>Já tem uma conta? <a href="#" onclick="toggleForms()">Fazer login</a></p>
+            </div>
+        </div>
+    </div>
+    <!-- Add the control panel section -->
+    <div id="controlPanel" class="control-panel hidden">
+        <h2>Painel de Controle</h2>
+        <div class="alerts-container">
+            <h3>Alertas Recebidos</h3>
+            <div id="alertsList" class="alerts-list">
+                <!-- Alerts will be dynamically inserted here -->
+            </div>
+        </div>
+    </div>
+    <script src="firebase-config.js"></script>
+    <script src="script.js"></script>
+    <!-- Add before closing body tag -->
+    <script src="https://cdn.jsdelivr.net/npm/@emailjs/browser@3/dist/email.min.js"></script>
+    <script src="notifications.js"></script>
+</body>
+</html>
